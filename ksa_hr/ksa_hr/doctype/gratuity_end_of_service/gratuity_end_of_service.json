@@ -1,0 +1,329 @@
+{
+ "actions": [],
+ "autoname": "HR-GES-PAY-.#####",
+ "creation": "2024-05-09 12:14:02.864869",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "details_tab",
+  "employee",
+  "employee_name",
+  "department",
+  "designation",
+  "start_work_date",
+  "relieving_date",
+  "column_break_3",
+  "posting_date",
+  "gratuity_rule",
+  "labor_low",
+  "status",
+  "company",
+  "section_break_zpqw",
+  "description",
+  "section_break_amvv",
+  "current_work_experience_years",
+  "current_work_experience",
+  "column_break_lfzj",
+  "current_work_experience_months",
+  "total_work_days",
+  "column_break_zuvd",
+  "current_work_experience_days",
+  "section_break_5",
+  "pay_via_salary_slip",
+  "amount",
+  "paid_amount",
+  "column_break_13",
+  "payroll_date",
+  "salary_component",
+  "cost_center",
+  "mode_of_payment",
+  "expense_account",
+  "payable_account",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Gratuity"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.department",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "current_work_experience",
+   "fieldtype": "Float",
+   "label": "Current Work Experience"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "gratuity_rule",
+   "fieldtype": "Link",
+   "label": "Gratuity Rule",
+   "options": "Gratuity Rule",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nUnpaid\nPaid\nSubmitted\nCancelled",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.company",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Gratuity",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Tab Break",
+   "label": "Payment and Accounting"
+  },
+  {
+   "default": "1",
+   "fieldname": "pay_via_salary_slip",
+   "fieldtype": "Check",
+   "label": "Pay via Salary Slip"
+  },
+  {
+   "default": "0",
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.pay_via_salary_slip == 0",
+   "fieldname": "paid_amount",
+   "fieldtype": "Currency",
+   "label": "Paid Amount",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "pay_via_salary_slip",
+   "fieldname": "payroll_date",
+   "fieldtype": "Date",
+   "label": "Payroll Date",
+   "mandatory_depends_on": "pay_via_salary_slip"
+  },
+  {
+   "depends_on": "pay_via_salary_slip",
+   "fieldname": "salary_component",
+   "fieldtype": "Link",
+   "label": "Salary Component",
+   "mandatory_depends_on": "pay_via_salary_slip",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "depends_on": "eval: !doc.pay_via_salary_slip",
+   "fieldname": "mode_of_payment",
+   "fieldtype": "Link",
+   "label": "Mode of Payment",
+   "mandatory_depends_on": "eval: !doc.pay_via_salary_slip",
+   "options": "Mode of Payment"
+  },
+  {
+   "depends_on": "eval: !doc.pay_via_salary_slip",
+   "fieldname": "expense_account",
+   "fieldtype": "Link",
+   "label": "Expense Account",
+   "mandatory_depends_on": "eval: !doc.pay_via_salary_slip",
+   "options": "Account"
+  },
+  {
+   "depends_on": "eval: !doc.pay_via_salary_slip",
+   "fieldname": "payable_account",
+   "fieldtype": "Link",
+   "label": "Payable Account",
+   "mandatory_depends_on": "eval: !doc.pay_via_salary_slip",
+   "options": "Account"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Gratuity",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "labor_low",
+   "fieldtype": "Link",
+   "label": "Labor Low",
+   "options": "Labor Low"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_zpqw",
+   "fieldtype": "Section Break",
+   "label": "Labor Low Description"
+  },
+  {
+   "fetch_from": "labor_low.description",
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "section_break_amvv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "employee.date_of_joining",
+   "fieldname": "start_work_date",
+   "fieldtype": "Date",
+   "label": "Start Work Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_lfzj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.relieving_date",
+   "fieldname": "relieving_date",
+   "fieldtype": "Date",
+   "label": "Relieving Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_zuvd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "current_work_experience_years",
+   "fieldtype": "Int",
+   "label": "Current Work Experience Years"
+  },
+  {
+   "fieldname": "current_work_experience_months",
+   "fieldtype": "Int",
+   "label": "Current Work Experience Months"
+  },
+  {
+   "fieldname": "current_work_experience_days",
+   "fieldtype": "Int",
+   "label": "Current Work Experience Days"
+  },
+  {
+   "fieldname": "total_work_days",
+   "fieldtype": "Int",
+   "label": "Total Work Days"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-05-13 12:45:13.528327",
+ "modified_by": "Administrator",
+ "module": "Ksa Hr",
+ "name": "Gratuity End of Service",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "employee_name",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee_name"
+}
