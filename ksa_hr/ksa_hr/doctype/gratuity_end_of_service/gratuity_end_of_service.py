@@ -41,10 +41,10 @@ class GratuityEndofService(AccountsController):
 
 		# تحويل الباقي إلى عدد الأشهر
 		current_work_experience_days = employee_total_workings_days % rule.total_working_days_per_year 
-		self.current_work_experience_months = current_work_experience_days // rule.total_working_days_per_months
+		self.current_work_experience_months = current_work_experience_days // rule.custom_total_working_days_per_months
 
 		# الحصول على الباقي من الأيام
-		self.current_work_experience_days = current_work_experience_days % rule.total_working_days_per_months 
+		self.current_work_experience_days = current_work_experience_days % rule.custom_total_working_days_per_months 
 	
 		self.total_work_days = employee_total_workings_days
 		if rule.method == "Manual":
@@ -176,7 +176,7 @@ def get_gratuity_rule_config(gratuity_rule: str) -> dict:
 		[
 			"work_experience_calculation_function as method",
 			"total_working_days_per_year",
-			"total_working_days_per_months",
+			"custom_total_working_days_per_months",
 			"minimum_year_for_gratuity",
 		],
 		as_dict=True,
